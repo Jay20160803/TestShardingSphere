@@ -1,4 +1,4 @@
-package com.andy.dao;
+package com.andy.mapper;
 
 import com.andy.model.Order;
 import org.apache.ibatis.annotations.Mapper;
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2020/4/17 15:41
  */
 @Mapper
-public interface OrderDao {
+public interface OrderMapper {
 
     int insert(Order order);
 

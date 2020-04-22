@@ -39,7 +39,7 @@ public class ShardingDataBaseTest {
      * */
     @Test
     public void testGetById(){
-        long id = 1251069991529857025L;
+        long id = 1;
         Order order  = orderService.selectById(id);
         System.out.println(order.toString());
     }

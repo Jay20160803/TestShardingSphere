@@ -1,6 +1,6 @@
 package com.andy.service.impl;
 
-import com.andy.dao.OrderDao;
+import com.andy.mapper.OrderMapper;
 import com.andy.model.Order;
 import com.andy.service.OrderService;
 
@@ -15,16 +15,16 @@ import org.springframework.stereotype.Service;
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    private OrderDao orderDao;
+    private OrderMapper orderMapper;
 
 
     @Override
     public int insert(Order order) {
-        return orderDao.insert(order);
+        return orderMapper.insert(order);
     }
 
     @Override
     public Order selectById(long id) {
-        return orderDao.selectById(id);
+        return orderMapper.selectById(id);
     }
 }

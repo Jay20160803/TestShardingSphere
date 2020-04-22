@@ -1,39 +1,5 @@
 
-spring:
-  shardingsphere:
-    datasource:
-      names: ds0,ds1
-      ds0:
-          type: com.zaxxer.hikari.HikariDataSource
-          driver-class-name: com.mysql.cj.jdbc.Driver
-          jdbc-url: jdbc:mysql://localhost:3306/ds0?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&&serverTimezone=GMT%2B8
-          username: root
-          password:
-      ds1:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://localhost:3306/ds1?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&&serverTimezone=GMT%2B8
-        username: root
-        password:
-    sharding:
-      # 分库策略 根据id取模确定数据进哪个数据库
-      default-database-strategy:
-        inline:
-          sharding-column: id
-          algorithm-expression: ds$->{id % 2}
 
-      # 具体分表策略
-      # 节点 ds0.t_order_0,ds0.t_order_1,ds1.t_order_0,ds1.t_order_1
-      tables:
-        t_order:
-          actual-data-nodes: ds$->{0..1}.t_order_$->{0..2}
-          table-strategy:
-            inline:
-              sharding-column: id
-              algorithm-expression: t_order_$->{id % 3}
-      props:
-        sql:
-          show: true
 server:
   port: 9999
 
@@ -44,3 +10,6 @@ mybatis:
 
 logging:
   config: classpath:logback-spring.xml
+spring:
+  profiles:
+    active: dev
